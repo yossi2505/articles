@@ -1,19 +1,18 @@
 # Article Generator
 
-A simple Node.js script that converts JSON article data into beautiful HTML pages.
+A simple Node.js script that converts JSON article data into beautiful HTML pages with your brand colors (#0a1800 and #c9ff00).
 
-## Features
+## ✨ Features
 
-✨ Professional article layout
-- Clean, modern design
+- Clean, professional design with brand colors
 - Responsive mobile-friendly interface
-- Featured image support
 - Author & publication date display
-- Metadata and tags
-- Share buttons
-- Dark footer
+- Metadata and tags section
+- Share buttons for social media
+- Dark footer with brand styling
+- Git integration for syncing with GitHub
 
-## Installation
+## Setup
 
 No dependencies required! Just Node.js.
 
@@ -21,87 +20,84 @@ No dependencies required! Just Node.js.
 cd "article generator "
 ```
 
-## Usage
+### Git Integration (Already Set Up ✅)
 
-### Basic Usage
+This folder is already connected to your GitHub repository:
+```
+https://github.com/yossi2505/articles.git
+```
 
+Check status anytime:
 ```bash
-node generator.js input.json article.html
+git status
 ```
 
-This will generate an `article.html` file from your `input.json`.
+## Usage Workflow
 
-### Default Usage
+### Step 1: Create Article JSON
+Create a new JSON file with your article data (e.g., `article1.json`):
 
-```bash
-node generator.js
-```
-
-Automatically uses `input.json` as input and generates `article.html`.
-
-## Input JSON Format
-
-Your `input.json` can be in two formats:
-
-### Format 1: Direct article object
-```json
-{
-  "title": "Article Title",
-  "author": "Author Name",
-  "publishDate": "2024-03-13",
-  "featuredImage": "https://example.com/image.jpg",
-  "excerpt": "Brief article excerpt",
-  "content": [
-    { "type": "paragraph", "text": "Paragraph text" },
-    { "type": "heading", "level": 2, "text": "Section Heading" }
-  ],
-  "tags": ["tag1", "tag2"],
-  "keywords": "SEO keywords"
-}
-```
-
-### Format 2: Wrapped output format
 ```json
 [
   {
     "output": {
-      "title": "Article Title",
-      "article": "Full article text here",
-      "source": "https://example.com",
+      "title": "Your Article Title",
+      "article": "Full article text here...",
+      "author": "Author Name",
+      "excerpt": "Brief summary",
+      "keywords": "seo keywords",
       "success": true
     }
   }
 ]
 ```
 
-## Options
-
-- **Input File**: First argument (default: `input.json`)
-- **Output File**: Second argument (default: `article.html`)
-
+### Step 2: Generate HTML
 ```bash
-node generator.js custom-input.json output-page.html
+node generator.js article1.json article1.html
 ```
 
-## Customization
-
-Edit the CSS in `generator.js` to customize:
-- Colors and fonts
-- Layout spacing
-- Responsive breakpoints
-- Button styles
-- Footer content
-
-## Example
-
-Generate with your input:
-
+### Step 3: Sync with GitHub
 ```bash
-node generator.js input.json article.html
-open article.html  # macOS
-# or
-start article.html  # Windows
-xdg-open article.html  # Linux
+git add article1.json article1.html
+git commit -m "Add article: Your Article Title"
+git push origin main
 ```
 
-Enjoy! 🎉
+### Step 4: Enable GitHub Pages
+1. Go to your GitHub repo settings
+2. Scroll to "Pages" section
+3. Select "Deploy from a branch"
+4. Choose "main" branch
+5. Your articles will be available at: `https://yossi2505.github.io/articles/article1.html`
+
+## Input JSON Format
+
+Create JSON files for your articles. The generator supports this format:
+
+```json
+[
+  {
+    "output": {
+      "title": "Your Article Title",
+      "article": "Full article text here. Split paragraphs with double newlines.\n\nSecond paragraph here.",
+      "author": "Author Name",
+      "excerpt": "Brief summary of the article",
+      "keywords": "seo keywords here",
+      "tags": ["tag1", "tag2", "tag3"],
+      "success": true
+    }
+  }
+]
+```
+
+**All fields are optional except `title` and `article`.**
+
+## Command
+
+```bash
+node generator.js input.json output.html
+```
+
+- **Argument 1**: Input JSON file (default: `input.json`)
+- **Argument 2**: Output HTML file (default: `article.html`)
